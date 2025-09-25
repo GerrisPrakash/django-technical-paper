@@ -118,7 +118,13 @@ Add calculated fields to each object:
 
 ```
 from django.db.models import Count
-User.objects.annotate(companies_count=Count('post'))
+from .models import User
+
+users = User.objects.annotate(post_count=Count('post'))
+
+for user in users:
+    print(user.username, user.company_count)
+
 
 ```
 
